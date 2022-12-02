@@ -14,15 +14,22 @@ ARG NODEJS_HOME=/opt/nodejs
 
 ENV PATH=${PATH}:${SONAR_SCANNER_HOME}/bin:${NODEJS_HOME}/bin
 
+RUN echo $PATH
+
 # set up local envs in order to allow for special chars (non-asci) in filenames
 ENV LC_ALL="C.UTF-8"
 
 WORKDIR /opt
 
+RUN echo $PATH
 # https://help.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
 USER root
 
+RUN echo $PATH
+
 # Prepare entrypoint
 COPY entrypoint.sh /entrypoint.sh
+RUN echo $PATH
 RUN chmod +x /entrypoint.sh
+RUN echo $PATH
 ENTRYPOINT ["/entrypoint.sh"]
